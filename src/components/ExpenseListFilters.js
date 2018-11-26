@@ -16,39 +16,44 @@ export class ExpenseListFilters extends React.Component {
       startDate: moment().startOf('month'),
       endDate: moment().endOf('month'),
     };
-    //this.onDatesChange = this.onDatesChange.bind(this);
+    this.onDatesChange = this.onDatesChange.bind(this);
     this.onFocusChange = this.onFocusChange.bind(this);
+    this.onTextChange = this.onTextChange.bind(this);
+    this.onSortChange = this.onSortChange.bind(this);
   }
-  // onDatesChange ({ startDate, endDate }) {
-  //   this.props.dispatch(setStartDate(startDate));
-  //   this.props.dispatch(setEndDate(endDate));
-  // }
+  onTextChange (e) {
+    const sT = e.target.value;
+    this.setState(() => ({ filterText: sT}))
+    this.props.setTextFilter(sT);
+  }
+  onSortChange(e) {
+    const sortVal = e.target.value;
+    this.setState(() => ({ filterSortBy: sortVal}))
+    if (sortVal === 'date') {
+      this.props.sortByDate();
+    }
+    else if (sortVal === 'amount') {
+      this.props.sortByAmount();
+    }
+  }
+  onDatesChange ({ startDate, endDate }) {
+    this.props.setStartDate(startDate);
+    this.props.setEndDate(endDate);
+  }
   onFocusChange (calenderFocused) {
     this.setState(() => ({ calenderFocused }));
   }
+
   render() {
    return (
   <div>
     <input type="text" 
       value={this.state.filterText}
-      onChange={(e) => {
-        const sT = e.target.value;
-        this.setState(() => ({ filterText: sT}))
-        this.props.setTextFilter(sT);
-      }}
+      onChange={this.onTextChange}
     />
     <select 
       value={this.state.filterSortBy} 
-      onChange={(e) => {
-        const sortVal = e.target.value;
-        this.setState(() => ({ filterSortBy: sortVal}))
-        if (sortVal === 'date') {
-          this.props.sortByDate();
-        }
-        else if (sortVal === 'amount') {
-          this.props.sortByAmount();
-        }
-      }}
+      onChange={this.onSortChange}
     >
       <option value="date">Date</option>
       <option value="amount">Amount</option>
@@ -61,11 +66,11 @@ export class ExpenseListFilters extends React.Component {
       endDate={this.props.filters.endDate} // momentPropTypes.momentObj or null,
       //endDateId={Math.floor((1 + Math.random() * 0x10000)).toString(16).substring(1)} // PropTypes.string.isRequired,
       endDateId={String(this.props.filters.endDate)}
-      onDatesChange={({ startDate, endDate }) => {
-        this.props.setStartDate(startDate);
-        this.props.setEndDate(endDate);
-        } // PropTypes.func.isRequired,
-      } 
+      onDatesChange={this.onDatesChange}
+      //   this.props.setStartDate(startDate);
+      //   this.props.setEndDate(endDate);
+      //   } // PropTypes.func.isRequired,
+      // } 
       focusedInput={this.state.calenderFocused} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
       onFocusChange={calenderFocused => this.setState({ calenderFocused })} // PropTypes.func.isRequired,
       numberOfMonths={1}
@@ -81,8 +86,8 @@ const mapStateToProps = (state) => ({
     filters: state.filters
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  setStartDate: (startDate) => dispatch(setStartDate(starteDate)),
+const mapDispatchToProps = (dispatch, props) => ({
+  setStartDate: (startDate) => dispatch(setStartDate(startDate)),
   setEndDate: (endDate) => dispatch(setEndDate(endDate)),
   setTextFilter: (text) => dispatch(setTextFilter(text)),
   sortByAmount: () => dispatch(sortByAmount()),
