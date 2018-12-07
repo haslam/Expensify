@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import ExpenseForm from './ExpenseForm';
-import { addExpense } from "../actions/Expenses";
+import { startAddExpense } from "../actions/Expenses";
 
 //always use an unconnected component for testing. Hence I'll add an export here
 export class AddExpensePage extends React.Component {
@@ -11,7 +11,7 @@ export class AddExpensePage extends React.Component {
   }
   onSubmit (expense) {
     //props.dispatch(addExpense(expense)) -- now, we can call onSubmit of mapped to props
-    this.props.addExpense(expense);
+    this.props.startAddExpense(expense);
     this.props.history.push('/');
   }
   render()  {
@@ -29,7 +29,7 @@ export class AddExpensePage extends React.Component {
 //For a more testable component, let's use mapDispatchToProps of connect. works similar as mapStateToProps but for Dispatch
 
 const mapDispatchToProps = (dispatch) => ({
-  addExpense: (expense) => dispatch(addExpense(expense))
+  startAddExpense: (expense) => dispatch(startAddExpense(expense))
 })
 
 //set first argument [state] to undefined.
