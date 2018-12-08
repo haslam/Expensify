@@ -1,18 +1,7 @@
 import * as firebase from 'firebase';
 
   // Initialize Firebase
-  const config = {
-    apiKey: "AIzaSyB9DXwPT-98OtLoH4wttn9DPePqO4mLiz8",
-    authDomain: "expensified-3d608.firebaseapp.com",
-    databaseURL: "https://expensified-3d608.firebaseio.com",
-    projectId: "expensified-3d608",
-    storageBucket: "expensified-3d608.appspot.com",
-    messagingSenderId: "398038209839"
-  };
-  firebase.initializeApp(config);
-  const database = firebase.database();
-
-  export { firebase, database as default };
+ 
 
   // database.ref('users').set({
   //   username: 'Sometest name',
