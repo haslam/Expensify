@@ -31,3 +31,26 @@ export const editExpense = (id, updates) => ({
   id,
   updates
 });
+
+//SET_EXPENSES -- set expenses to redux store
+export const setExpenses = (expenses) => ({
+  type: 'SET_EXPENSES',
+  expenses
+})
+
+//async fetch of data and add to SET_EXPENSES
+export const startSetExpenses = () => {
+  return (dispatch) => {
+    return database.ref('expenses').once('value')
+      .then((snapshot) => {
+        let expenses = [];
+        snapshot.forEach(snaps => {
+          expenses.push({
+            id: snaps.key,
+            ...snaps.val()
+          })
+        })
+        dispatch(setExpenses(expenses))
+      })
+  }
+}

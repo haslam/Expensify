@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import AppRouter from "./routers/AppRouter";
 import configureStore from "./store/configStore";
-import { addExpense } from "./actions/Expenses";
+import { startSetExpenses } from "./actions/Expenses";
 import { setTextFilter } from "./actions/Filters";
 import getVisibleExpense from "./selectors/Expenses";
 import "normalize-css";
@@ -37,5 +37,9 @@ const jsx = (
     <AppRouter />
   </Provider>
 );
-ReactDOM.render(jsx, document.getElementById('app'));
+ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+store.dispatch(startSetExpenses()).then(() => {
+  ReactDOM.render(jsx, document.getElementById('app'));
+})
+
 
