@@ -25,12 +25,32 @@ export const removeExpense = ({ id }) => ({
   id
 })
 
+export const startRemoveExpense = ({ id }) => {
+  return (dispatch) => {
+    const adaRem = database.ref(`expenses/${id}`);
+    return adaRem.remove()
+      .then(() => {
+        dispatch(removeExpense({ id }))
+      })
+  }
+}
+
 //EDIT_EXPENSE
 export const editExpense = (id, updates) => ({
   type: 'EDIT_EXPENSE',
   id,
   updates
 });
+
+export const startEditExpense = (id, updates) => {
+  return (dispatch) => {
+    const adaUpdate = database.ref(`expenses/${id}`);
+    return adaUpdate.update(updates)
+      .then(() => {
+        dispatch(editExpense(id, updates));
+      })
+  }
+}
 
 //SET_EXPENSES -- set expenses to redux store
 export const setExpenses = (expenses) => ({

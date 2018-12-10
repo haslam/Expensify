@@ -6,7 +6,10 @@ import {
   addExpense, 
   removeExpense, 
   editExpense, 
-  setExpenses } 
+  setExpenses,
+  startRemoveExpense,
+  startEditExpense,
+ } 
   from "../../actions/Expenses";
 import expenses from "../fixtures/Expenses";
 import database from "../../firebase/firebase";
@@ -32,6 +35,26 @@ test('should setup remove expense action object', () => {
   })
 })
 
+test('should remove expense', (done) => {
+  const store = createMockStore({});
+  const id = expenses[1].id;
+  store.dispatch(startRemoveExpense({ id }))
+    .then(() => {
+      const actions = store.getActions();
+      expect(actions[0]).toEqual({
+        type: 'REMOVE_EXPENSE',
+        id
+      });
+      return database.ref(`expenses/${id}`).once('value');
+    })
+    .then((snapshot) => {
+      //should be null || false 
+      expect(snapshot.val()).toBeFalsy();
+      done();
+   })
+  
+})
+
 test('should setup edit expense action', () => {
   const action = editExpense('123abc', { note:'new note value' });
   expect(action).toEqual({
@@ -41,6 +64,31 @@ test('should setup edit expense action', () => {
       note: 'new note value'
     }
   }); 
+})
+
+test('should edit expense from db', (done) => {
+  const store = createMockStore({});
+  const id = expenses[1].id;
+  const updates = {
+    description: 'Updated string',
+    note: 'some test note',
+    amount: 1995,
+    createdAt: 6755552
+  };
+  store.dispatch(startEditExpense(id, updates))
+    .then(() => {
+      const actions = store.getActions();
+      expect(actions[0]).toEqual({
+        type: 'EDIT_EXPENSE',
+        id,
+        updates
+      })
+      return database.ref(`expenses/${id}`).once('value');
+    })
+    .then(snapshot => {
+        expect(snapshot.val().createdAt).toBe(updates.createdAt);
+        done();
+    })
 })
 
 //pass done as argument to tell jest to run asychronously
@@ -118,6 +166,8 @@ test('should fetch the expenses from firebase', (done) => {
     done();
   })
 })
+
+
 // test('should setup add expense with default values', () => {
 //   const action = addExpense();
 //   expect(action).toEqual({
