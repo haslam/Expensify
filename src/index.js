@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Provider } from 'react-redux';
+import { Provider } from "react-redux";
 import AppRouter, { history } from "./routers/AppRouter";
 import configureStore from "./store/configStore";
 import { startSetExpenses } from "./actions/Expenses";
 import { authLogin, authLogout } from "./actions/auth";
 import getVisibleExpense from "./selectors/Expenses";
 import "normalize-css";
-import 'react-dates/lib/css/_datepicker.css';
+import "react-dates/lib/css/_datepicker.css";
 import "./styles/style.scss";
-import { firebase } from './firebase/firebase';
+import { firebase } from "./firebase/firebase";
+import Loading from "./components/Loading";
 
 
 const store = configureStore();
@@ -47,7 +48,7 @@ const jsx = (
     <AppRouter />
   </Provider>
 );
-ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+ReactDOM.render(<Loading />, document.getElementById('app'));
 
 
 firebase.auth().onAuthStateChanged((user) => {

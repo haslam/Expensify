@@ -1,16 +1,23 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { beginLogout } from '../actions/auth'
 
 export const Header = ({ beginLogout, email }) => (
-  <div>
-    <h1>Expensify App</h1>
-    <p>Welcome {email}</p>
-    <NavLink to="/dashboard" activeClassName="is-active">Dashboard</NavLink>
-    <NavLink to="/create" activeClassName="is-active">Create Expense</NavLink>
-    <button onClick={beginLogout}>Logout</button>
-  </div>
+  <header className="header">
+    <div className="content-container">
+      <div className="header__content">
+        <Link className="header__title" to="/dashboard">
+          <h1>Expensify</h1>
+        </Link>
+        <div>
+          <small style={{paddingRight: "1rem", color: "#dcdcdc"}}>{email}</small>
+          <button className="button button--link" onClick={beginLogout}>Logout</button>
+        </div>   
+        
+      </div>
+    </div>
+  </header>
 )
 
 const mapDispatchToProps = (dispatch) => ({
@@ -21,3 +28,5 @@ const mapStateToProps = (state) => ({
   email: state.auth.email
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Header)
+
+{/* <NavLink to="/create" activeClassName="is-active">Create Expense</NavLink> */}

@@ -46,37 +46,47 @@ export class ExpenseListFilters extends React.Component {
 
   render() {
    return (
-  <div>
-    <input type="text" 
-      value={this.state.filterText}
-      onChange={this.onTextChange}
-    />
-    <select 
-      value={this.state.filterSortBy} 
-      onChange={this.onSortChange}
-    >
-      <option value="date">Date</option>
-      <option value="amount">Amount</option>
-    </select>
-   
-    <DateRangePicker
-      startDate={this.props.filters.startDate} // momentPropTypes.momentObj or null,
-      //startDateId={Math.floor((1 + Math.random() * 0x10000)).toString(16).substring(1)} // PropTypes.string.isRequired,
-      startDateId={String(this.props.filters.startDate)}
-      endDate={this.props.filters.endDate} // momentPropTypes.momentObj or null,
-      //endDateId={Math.floor((1 + Math.random() * 0x10000)).toString(16).substring(1)} // PropTypes.string.isRequired,
-      endDateId={String(this.props.filters.endDate)}
-      onDatesChange={this.onDatesChange}
-      //   this.props.setStartDate(startDate);
-      //   this.props.setEndDate(endDate);
-      //   } // PropTypes.func.isRequired,
-      // } 
-      focusedInput={this.state.calenderFocused} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-      onFocusChange={calenderFocused => this.setState({ calenderFocused })} // PropTypes.func.isRequired,
-      numberOfMonths={1}
-      showDefaultInputIcon={true}
-      showClearDates={true}
-    />
+  <div className="content-container">
+  <div className="input-group">
+    <div className="input-group__item">
+      <input type="text" 
+        value={this.state.filterText}
+        onChange={this.onTextChange}
+        className="text-input"
+        placeholder="Search expenses"
+      />
+    </div>
+    <div className="input-group__item">
+      <select 
+        value={this.state.filterSortBy} 
+        onChange={this.onSortChange}
+        className="select"
+      >
+        <option value="date">Date</option>
+        <option value="amount">Amount</option>
+      </select>
+    </div>
+    <div className="input-group__item">
+      <DateRangePicker
+        startDate={this.props.filters.startDate} // momentPropTypes.momentObj or null,
+        //startDateId={Math.floor((1 + Math.random() * 0x10000)).toString(16).substring(1)} // PropTypes.string.isRequired,
+        startDateId={String(this.props.filters.startDate)}
+        endDate={this.props.filters.endDate} // momentPropTypes.momentObj or null,
+        //endDateId={Math.floor((1 + Math.random() * 0x10000)).toString(16).substring(1)} // PropTypes.string.isRequired,
+        endDateId={String(this.props.filters.endDate)}
+        onDatesChange={this.onDatesChange}
+        //   this.props.setStartDate(startDate);
+        //   this.props.setEndDate(endDate);
+        //   } // PropTypes.func.isRequired,
+        // } 
+        focusedInput={this.state.calenderFocused} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+        onFocusChange={calenderFocused => this.setState({ calenderFocused })} // PropTypes.func.isRequired,
+        numberOfMonths={1}
+        showDefaultInputIcon={true}
+        showClearDates={true}
+      />
+    </div>
+  </div>
   </div>
     );
   }
