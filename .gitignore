@@ -1,5 +1,6 @@
 node_modules/
 public/dist/
 Note.md
+note.md
 .env.test
 .env.development
