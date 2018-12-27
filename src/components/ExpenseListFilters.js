@@ -74,16 +74,13 @@ export class ExpenseListFilters extends React.Component {
         endDate={this.props.filters.endDate} // momentPropTypes.momentObj or null,
         //endDateId={Math.floor((1 + Math.random() * 0x10000)).toString(16).substring(1)} // PropTypes.string.isRequired,
         endDateId={String(this.props.filters.endDate)}
-        onDatesChange={this.onDatesChange}
-        //   this.props.setStartDate(startDate);
-        //   this.props.setEndDate(endDate);
-        //   } // PropTypes.func.isRequired,
-        // } 
+        onDatesChange={this.onDatesChange} 
         focusedInput={this.state.calenderFocused} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
         onFocusChange={calenderFocused => this.setState({ calenderFocused })} // PropTypes.func.isRequired,
         numberOfMonths={1}
         showDefaultInputIcon={true}
         showClearDates={true}
+        isOutsideRange={() => false }
       />
     </div>
   </div>
@@ -105,12 +102,4 @@ const mapDispatchToProps = (dispatch, props) => ({
 })
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseListFilters);
 
-{/* <DateRangePicker 
-startDate={this.props.filters.startDate}
-endDate={this.props.filters.endDate}
-focusedInput={this.state.calenderFocused}
-onFocusChange={this.onFocusChange}
-showClearDates={true}
-numberOfMonths={1}
-isOutsideRange={() => false}      
-/> */}
+

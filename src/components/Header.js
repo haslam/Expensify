@@ -8,7 +8,7 @@ export const Header = ({ beginLogout, email }) => (
     <div className="content-container">
       <div className="header__content">
         <Link className="header__title" to="/dashboard">
-          <h1>Expensify</h1>
+          <h1>Expensified</h1>
         </Link>
         <div>
           <small style={{paddingRight: "1rem", color: "#dcdcdc"}}>{email}</small>

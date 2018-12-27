@@ -11,6 +11,9 @@ exports[`should render EditExpensePage snaphot 1`] = `
       <h1>
         Edit Expense
       </h1>
+      <p>
+        Easily make changes to the selected expense.
+      </p>
     </div>
   </div>
   <div

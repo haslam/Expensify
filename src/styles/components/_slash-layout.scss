@@ -1,6 +1,6 @@
 .slash-layout {
   align-items: center;
-  background: url('/images/bg.jpg');
+  background: url('/images/venveosplash.jpg');
   background-size: cover;
   display: flex;
   height: 100vh;
@@ -10,6 +10,9 @@
 .slash-layout__box {
   background: fade-out($color: white, $amount: .15);
   border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: $l-size $m-size;
   text-align: center;
   width: 30rem;  

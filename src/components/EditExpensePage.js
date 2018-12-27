@@ -1,7 +1,8 @@
 import React from 'react';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
+import { matchPath } from 'react-router-dom';
 import ExpenseForm from './ExpenseForm';
-import { startEditExpense, startRemoveExpense } from "../actions/Expenses";
+import { startEditExpense, startRemoveExpense } from '../actions/Expenses';
 
 export class EditExpensePage extends React.Component {
   constructor(props) {
@@ -20,11 +21,13 @@ export class EditExpensePage extends React.Component {
     this.props.history.push('/');
   }
   render() {
+  console.log('edit props ', this.props);
     return (
       <div>
         <div className="page-header">
           <div className="content-container">
             <h1>Edit Expense</h1>
+            <p>Easily make changes to the selected expense.</p> 
           </div>
         </div>
         <div className="content-container">
@@ -40,14 +43,19 @@ export class EditExpensePage extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch, props) => ({
-  startEditExpense: (id, expense) => { dispatch(startEditExpense(id, expense)) },
-  startRemoveExpense: (data) => { dispatch(startRemoveExpense(data)) }
+  startEditExpense: (id, expense) => dispatch(startEditExpense(id, expense)),
+  startRemoveExpense: (data) => dispatch(startRemoveExpense(data))
 })
 
-const mapsStateToProps = (state, props) => {
-  return {
-    expense: state.expenses.find((expense) => expense.id === props.match.params.id)
-  }
-}
-export default connect(mapsStateToProps, mapDispatchToProps)(EditExpensePage)
+const mapStateToProps = (state, props) => ({
+  expense: state.expenses.find((expense) => {
+  const match = matchPath(props.location.pathname, {
+    path: '/edit/:id',
+    exact: true,
+    strict: false
+  })
+  return expense.id === match.params.id
+  })
+})
+export default connect(mapStateToProps, mapDispatchToProps)(EditExpensePage)
 

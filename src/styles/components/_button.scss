@@ -1,5 +1,5 @@
 .button {
-  background: $blue;
+  background: darken($color: $blue, $amount: 10);
   border: none;
   color: white;
   display: inline-block;
@@ -16,4 +16,11 @@
 
 .button--secondary {
   background: darken($color: $gray, $amount: 30);
+}
+.button--google {
+ background: $blue;
+ margin-bottom: .5rem;
+}
+.button--github {
+  background: hsl(210, 12%, 16%);
 }
