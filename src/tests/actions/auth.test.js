@@ -1,5 +1,4 @@
 import { authLogin, authLogout } from '../../actions/auth'
-import { firebase, googleAuthProvider } from '../../firebase/firebase'
 
 
 test('should perform authLogout', () => {

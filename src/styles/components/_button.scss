@@ -17,10 +17,17 @@
 .button--secondary {
   background: darken($color: $gray, $amount: 30);
 }
+
+.button__brand--mb {
+  margin-bottom: .6rem;
+}  
 .button--google {
  background: $blue;
- margin-bottom: .5rem;
 }
 .button--github {
-  background: hsl(210, 12%, 16%);
+  background: hsl(210,12%,16%);
 }
+
+.button--facebook {
+  background: hsl(220,46%,48%);
+ }

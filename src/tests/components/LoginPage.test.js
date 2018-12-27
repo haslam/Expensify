@@ -12,15 +12,25 @@ test('should call beginLogin on button click', () => {
   //set a spy
   const beginLogin = jest.fn();
   const githubLogin = jest.fn();
+  const facebookLogin = jest.fn();
   //set a wrapper
-  const wrapper = shallow(<LoginPage beginLogin={beginLogin} githubLogin={githubLogin}  />);
+  const wrapper = shallow(
+      <LoginPage 
+        beginLogin={beginLogin} 
+        githubLogin={githubLogin} 
+        facebookLogin={facebookLogin}  
+        />
+    );
 
-  //simulate a click
+  //simulate a click for each button
   wrapper.find('.button--google').simulate('click');
   //expect spy func to have been called
   expect(beginLogin).toHaveBeenCalled();
 
   wrapper.find('.button--github').simulate('click');
   expect(githubLogin).toHaveBeenCalled();
+
+  wrapper.find('.button--facebook').simulate('click');
+  expect(facebookLogin).toHaveBeenCalled();
 })
 
