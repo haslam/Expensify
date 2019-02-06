@@ -1,15 +1,16 @@
 import React from "react";
 import { shallow } from "enzyme";
-import ReactShallowRenderer from "react-test-renderer/shallow";
 import { Header } from "../../components/Header";
+import hashEmail from '../../helper/hashing';
 
-let wrapper, logout;
+const email = 'test@example.com';
+
 // beforeEach(() => {
 //   logout = jest.fn();
 //   wrapper = shallow(<Header beginLogout={() => {}}/>);
 // })
 test('should render Header correctly', () => {
-const wrapper = shallow(<Header beginLogout={() => {}}/>);
+const wrapper = shallow(<Header email={email}beginLogout={() => {}}/>);
 
   //use enzymn-to-json library to enhance enzyme with snapshot utility
   expect(wrapper).toMatchSnapshot();
@@ -22,8 +23,8 @@ const wrapper = shallow(<Header beginLogout={() => {}}/>);
 
 test('should call beginLogout on button click', () => {
   const beginLogout = jest.fn(); //spy
-  const wrapper = shallow(<Header beginLogout={beginLogout} />);
-  wrapper.find('button').simulate('click');
+  const wrapper = shallow(<Header email={email} beginLogout={beginLogout} />);
+  wrapper.find('.button--trans').simulate('click');
   expect(beginLogout).toHaveBeenCalled()
 })
 

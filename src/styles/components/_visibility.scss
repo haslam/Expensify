@@ -8,3 +8,7 @@
     display: none;
   }
 }
+
+#app {
+  transition: margin-left 0.5s ease-in-out;
+}

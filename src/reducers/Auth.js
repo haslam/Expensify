@@ -5,11 +5,13 @@ const authReducer = (state = {}, action) => {
         ...state,
         uid: action.uid,
         email: action.email,
+        displayName: action.displayName,
       }
     case 'LOGOUT':
       return {
         uid: '',
         email: '',
+        displayName: '',
       }
     default:
       return state;

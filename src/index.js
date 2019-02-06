@@ -57,7 +57,7 @@ firebase.auth().onAuthStateChanged((user) => {
     console.log(user);
     //user is authenticated
     //dispatch login with user uid
-    store.dispatch(authLogin(user.uid, user.email));
+    store.dispatch(authLogin(user.uid, user.email, user.displayName));
     //user is authenticated, dispatch expenses and render
     store.dispatch(startSetExpenses()).then(() => {
       renderInApp();

@@ -2,7 +2,7 @@
 
 A light and easy expense manager to help keep control of an individual's expenses.
 
-This App utilizes Google's firebase for authentication and database
+This App utilizes firebase for authentication and database
 To run locally:
 
 - ```sh

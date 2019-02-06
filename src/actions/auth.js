@@ -33,11 +33,12 @@ export function beginLogout () {
   }
 }
 
-export function authLogin (uid, email) {
+export function authLogin (uid, email, displayName) {
   return {
     type: 'LOGIN',
     uid,
-    email
+    email,
+    displayName
   }
 }
 

@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-//module.export (a node function) exposes object to another file.
+
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 

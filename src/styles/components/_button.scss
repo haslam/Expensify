@@ -10,7 +10,7 @@
   text-decoration: none;
 }
 
-.button--link {
+.button--trans {
   background: none;
 }
 
@@ -31,3 +31,14 @@
 .button--facebook {
   background: hsl(220,46%,48%);
  }
+.button--close {
+  color: whitesmoke;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.button__logout--left {
+  border: 0;
+  background-color: darken($blue, 10);
+  color: white;
+  padding: 7px 12px;
+}

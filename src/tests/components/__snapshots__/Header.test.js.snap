@@ -10,6 +10,18 @@ exports[`should render Header correctly 1`] = `
     <div
       className="header__content"
     >
+      <div
+        className="show-for-mobile"
+      >
+        <button
+          className="mobile__hamburger"
+          onClick={[Function]}
+          role="menu"
+          title="Navigation menu hamburger"
+        >
+          🍔
+        </button>
+      </div>
       <Link
         className="header__title"
         replace={false}
@@ -19,21 +31,39 @@ exports[`should render Header correctly 1`] = `
           Expensified
         </h1>
       </Link>
-      <div>
-        <small
+      <div
+        className="header__profile show-for-desktop"
+      >
+        <div
+          className="header__avatar"
+        >
+          <img
+            className="avatar avatar--sphere"
+            src="https://gravatar.com/avatar/55502f40dc8b7c769880b10874abc9d0?s=200"
+          />
+          <small
+            style={
+              Object {
+                "color": "#dcdcdc",
+                "paddingRight": "1rem",
+              }
+            }
+          />
+        </div>
+        <div
           style={
             Object {
-              "color": "#dcdcdc",
-              "paddingRight": "1rem",
+              "alignSelf": "center",
             }
           }
-        />
-        <button
-          className="button button--link"
-          onClick={[Function]}
         >
-          Logout
-        </button>
+          <button
+            className="button button--trans"
+            onClick={[Function]}
+          >
+            Logout
+          </button>
+        </div>
       </div>
     </div>
   </div>
