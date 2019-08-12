@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import AppRouter, { history } from "./routers/AppRouter";
 import configureStore from "./store/configStore";
@@ -53,7 +52,7 @@ ReactDOM.render(<Loading />, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user) => {
 
-  if (user) { 
+  if (user) {
     console.log(user);
     //user is authenticated
     //dispatch login with user uid

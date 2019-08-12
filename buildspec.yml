@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+    commands:
+      - echo Starting to install dependencies on `date`
+      - npm install --silent
+      - echo Finished installing dependencies
+  pre_build:
+    commands:
+      - echo Starting jest test
+      - npm run test
+      - echo Finished running test
+  build:
+    commands:
+      - echo Staring build
+      - npm run build:prod
+      - echo Finished running build
+  post_build:
+    commands:
+      - echo Deploying to heroku
+      - npm run heroku-postbuild
+      - echo Finishing deploying to heroku
+artifacts:
+  base-directory: 'dist*'
+cache:
+  paths:
+    - 'node_modules/**/*'
